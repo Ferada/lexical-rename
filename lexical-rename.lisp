@@ -1,7 +1,7 @@
 (in-package #:cl-user)
 
 (defpackage #:lexical-rename
-  (:use #:cl #:fiveam)
+  (:use #:cl)
   (:export
    ;; actual API
    #:lexical-rename

@@ -1,4 +1,13 @@
-(in-package #:lexical-rename)
+(in-package #:cl-user)
+
+(defpackage #:lexical-rename-tests
+  (:use #:cl #:lexical-rename #:fiveam))
+
+(in-package #:lexical-rename-tests)
+
+(def-suite lexical-rename-tests)
+
+(in-suite lexical-rename-tests)
 
 (def-test test.1 ()
   "Simple renaming of variables."

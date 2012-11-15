@@ -32,7 +32,16 @@
   :description "Less then SYMBOL-MACROLET."
   :author "Olof-Joachim Frahm <olof@macrolet.net>"
   :licence "Simplified BSD License"
-  :depends-on (#:fiveam)
   :serial T
-  :components ((:file "lexical-rename")
-               (:file "tests")))
+  :in-order-to ((asdf:test-op (asdf:test-op #:lexical-rename-tests)))
+  :components ((:file "lexical-rename")))
+
+(asdf:defsystem #:lexical-rename-tests
+  :depends-on (#:lexical-rename #:fiveam)
+  :components ((:file "tests")))
+
+(defmethod asdf:perform ((op asdf:test-op) (system (eql (asdf:find-system '#:lexical-rename-tests))))
+  ;; TODO: maybe raise an error if some didn't pass?
+  (funcall (intern (symbol-name '#:run!) '#:fiveam)
+           (intern (symbol-name '#:lexical-rename-tests)
+                   '#:lexical-rename-tests)))
