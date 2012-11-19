@@ -1,3 +1,5 @@
+<!-- -*- mode: markdown; coding: utf-8; -*- -->
+
 LEXICAL-RENAME - Less than SYMBOL-MACROLET, alpha-conversion for CL.
 
 Copyright (C) 2012 Olof-Joachim Frahm

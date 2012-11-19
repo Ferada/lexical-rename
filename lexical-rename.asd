@@ -29,19 +29,19 @@
 (in-package #:cl-user)
 
 (asdf:defsystem #:lexical-rename
+  #+asdf-unicode :encoding #+asdf-unicode :utf-8
   :description "Less then SYMBOL-MACROLET."
+  :long-description "Less then SYMBOL-MACROLET, alpha-conversion for CL."
   :author "Olof-Joachim Frahm <olof@macrolet.net>"
   :licence "Simplified BSD License"
-  :serial T
+  :components ((:file "lexical-rename"))
   :in-order-to ((asdf:test-op (asdf:test-op #:lexical-rename-tests)))
-  :components ((:file "lexical-rename")))
+  :perform (asdf:test-op :after (operation component)
+             (funcall (intern (symbol-name '#:run!) '#:fiveam)
+                      (intern (symbol-name '#:lexical-rename-tests)
+                              '#:lexical-rename-tests))))
 
 (asdf:defsystem #:lexical-rename-tests
+  :author "Olof-Joachim Frahm <olof@macrolet.net>"
   :depends-on (#:lexical-rename #:fiveam)
   :components ((:file "tests")))
-
-(defmethod asdf:perform ((op asdf:test-op) (system (eql (asdf:find-system '#:lexical-rename-tests))))
-  ;; TODO: maybe raise an error if some didn't pass?
-  (funcall (intern (symbol-name '#:run!) '#:fiveam)
-           (intern (symbol-name '#:lexical-rename-tests)
-                   '#:lexical-rename-tests)))

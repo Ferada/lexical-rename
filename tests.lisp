@@ -1,3 +1,5 @@
+;;; -*- mode: lisp; syntax: common-lisp; coding: utf-8; package: cl-user; -*-
+
 (in-package #:cl-user)
 
 (defpackage #:lexical-rename-tests
